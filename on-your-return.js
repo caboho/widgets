@@ -1,4 +1,4 @@
-/* On-your-return widget. Copyright (c) 2026 ca-boh. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
+/* On-your-return widget. Copyright (c) 2026 caboho. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
 (function () {
   function render() {
   var D = window.OYR || {}, C = D.c || "", R = D.r || [], root = document.getElementById("oyr");

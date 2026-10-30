@@ -1,4 +1,4 @@
-/* Sources widget. Copyright (c) 2026 ca-boh. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
+/* Sources widget. Copyright (c) 2026 caboho. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
 (function () {
   function render() {
   var S = window.SW || [], root = document.getElementById("sw");

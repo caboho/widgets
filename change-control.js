@@ -1,4 +1,4 @@
-/* Change-control view. Copyright (c) 2026 ca-boh. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
+/* Change-control view. Copyright (c) 2026 caboho. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
 (function () {
   var TOK = /https?:\/\/[^\s)]+|[\p{L}\p{N}_][\p{L}\p{N}_'’]*|\s+|[^\p{L}\p{N}_\s]/gu;
   var CSS =

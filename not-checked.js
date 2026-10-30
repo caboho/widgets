@@ -1,4 +1,4 @@
-/* Not-checked widget. Copyright (c) 2026 ca-boh. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
+/* Not-checked widget. Copyright (c) 2026 caboho. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
 (function () {
   function render() {
   var D = window.NC || {}, G = [["💤", "Deferred", "deferred", D.d || []], ["⚠️", "Error", "error", D.e || []]], root = document.getElementById("nc");

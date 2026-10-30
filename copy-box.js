@@ -1,4 +1,4 @@
-/* Copy box widget. Copyright (c) 2026 ca-boh. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
+/* Copy box widget. Copyright (c) 2026 caboho. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
 (function () {
   function copy(b) {
     var t = b.getAttribute("data-t"), ok = false;
