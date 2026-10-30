@@ -15,9 +15,9 @@
     return HR + ps + n;
   }
   function still(D) {
-    var g = (D.g || []).length ? "<br>" + D.g.map(link).join(" · ") : "";
+    var g = (D.g || []).length ? " · " + D.g.map(link).join(" · ") : "";
     var c = (D.c || []).map(function (t) { return '<div data-copy style="margin-top:10px">' + esc(t) + "</div>"; }).join("");
-    return HR + '<p style="' + P + '">' + done(D.d) + "🔲 Still on you: " + esc(D.s) + " — then click " + link(["Done", D.t]) + g + "</p>" + c;
+    return HR + '<p style="' + P + '">' + done(D.d) + "🔲 Still on you: " + esc(D.s) + g + " — then click " + link(["Done", D.t]) + "</p>" + c;
   }
   function info(D) {
     var rows = (D.r || []).map(function (r) {
