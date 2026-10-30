@@ -11,7 +11,8 @@
       var html = parts.map(function (x) { return typeof x === "string" ? esc(x) : link(x); }).join("");
       return '<p style="' + P + (i < D.a.length - 1 ? ";margin-bottom:10px" : "") + '">' + (i === 0 ? done(D.d) : "") + html + "</p>";
     }).join("");
-    return HR + ps;
+    var n = D.n ? '<div style="margin-top:10px;border:0.5px solid var(--border-strong);border-radius:8px;padding:8px 12px;font-size:14px;line-height:1.55;color:var(--text-secondary)">' + esc(D.n) + "</div>" : "";
+    return HR + ps + n;
   }
   function still(D) {
     var g = (D.g || []).length ? "<br>" + D.g.map(link).join(" · ") : "";
