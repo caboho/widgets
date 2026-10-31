@@ -10,7 +10,7 @@
     if (/^https?:\/\//.test(l[1])) return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener" style="' + A + '">' + esc(l[0]) + " ↗</a>";
     return '<a href="#" data-p="' + esc(l[1]) + '" style="' + A + '">' + esc(l[0]) + "</a>";
   }
-  function done(d) { return d ? "<em>☑️ Done</em><br>" : ""; }
+  function done(d) { return d ? "☑️ Done<br>" : ""; }
   function ask(D) {
     var ps = (D.a || []).map(function (parts, i) {
       var html = parts.map(function (x) { return typeof x === "string" ? esc(x) : link(x); }).join("");
@@ -29,7 +29,7 @@
       var cmd = r[2] ? ' · <span data-copy-chip>' + esc(r[2]) + "</span>" : "";
       return '<div style="font-size:14px;line-height:1.6;color:var(--text-primary)">ℹ️ ' + esc(r[0]) + " · " + esc(r[1]) + cmd + "</div>";
     }).join("");
-    return HR + rows + '<p style="' + P + ';margin-top:6px"><em>✅ All set, you\'re free.</em></p>';
+    return HR + rows + '<p style="' + P + ';margin-top:6px">✅ All set, you\'re free.</p>';
   }
   function render() {
     var D = window.EN || {}, root = document.getElementById("en");
