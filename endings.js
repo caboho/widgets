@@ -1,7 +1,7 @@
 /* Reply endings widget. Copyright (c) 2026 caboho. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
 (function () {
-  // One font for every ending (since 2026-10-31): the sans and size of the ℹ️ row; mono stays only for copyable commands.
-  var P = "margin:0;font-size:14px;line-height:1.6;font-weight:400;color:var(--text-primary)";
+  // One font for every ending (since 2026-10-31): the ℹ️ row's sans; ending lines at 16 px like the chat text, the ℹ️ row at 14 px; mono only for copyable commands.
+  var P = "margin:0;font-size:16px;line-height:1.6;font-weight:400;color:var(--text-primary)";
   var A = "color:var(--text-accent);font-weight:400;text-decoration:underline;text-underline-offset:3px;cursor:pointer";
   var HR = '<hr style="border:none;border-top:1px solid var(--border-strong);margin:0 0 1rem">';
   function esc(t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
