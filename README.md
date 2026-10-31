@@ -1,6 +1,6 @@
 # Widgets
 
-Display scripts for my chat widgets: Sources list, change-control view, on-your-return list, not-checked list, copy box and what's-waiting checklist. Each is loaded from a tagged release.
+Display scripts for my chat widgets: Sources list, change-control view, on-your-return list, not-checked list, status list (no change plus not checked), copy box and what's-waiting checklist. Each is loaded from a tagged release.
 
 Copyright (c) 2026 caboho. All rights reserved.
 
