@@ -4,7 +4,12 @@
   var A = "color:var(--text-accent);font-weight:400;text-decoration:underline;text-underline-offset:3px;cursor:pointer";
   var HR = '<hr style="border:none;border-top:1px solid var(--border-strong);margin:0 0 1rem">';
   function esc(t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
-  function link(l) { return '<a href="#" data-p="' + esc(l[1]) + '" style="' + A + '">' + esc(l[0]) + "</a>"; }
+  // A link whose target is a web address opens that page (e.g. the thing to check before "Ready to use");
+  // any other target is a reply sent to the chat.
+  function link(l) {
+    if (/^https?:\/\//.test(l[1])) return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener" style="' + A + '">' + esc(l[0]) + " ↗</a>";
+    return '<a href="#" data-p="' + esc(l[1]) + '" style="' + A + '">' + esc(l[0]) + "</a>";
+  }
   function done(d) { return d ? "<em>☑️ Done</em><br>" : ""; }
   function ask(D) {
     var ps = (D.a || []).map(function (parts, i) {
