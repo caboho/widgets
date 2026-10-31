@@ -1,6 +1,7 @@
 /* Reply endings widget. Copyright (c) 2026 caboho. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
 (function () {
-  var P = "margin:0;font-family:var(--font-voice);font-size:16px;line-height:1.7;font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:var(--text-primary)";
+  // One font for every ending (since 2026-10-31): the sans and size of the ℹ️ row; mono stays only for copyable commands.
+  var P = "margin:0;font-size:14px;line-height:1.6;font-weight:400;color:var(--text-primary)";
   var A = "color:var(--text-accent);font-weight:400;text-decoration:underline;text-underline-offset:3px;cursor:pointer";
   var HR = '<hr style="border:none;border-top:1px solid var(--border-strong);margin:0 0 1rem">';
   function esc(t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
@@ -31,10 +32,12 @@
     }).join("");
     return HR + rows + '<p style="' + P + ';margin-top:6px">✅ All set, you\'re free.</p>';
   }
+  // A lone ending line: k:"set" (✅ All set) or k:"paused" (✨ Paused, before the On-your-return widget).
+  function line(D) { return HR + '<p style="' + P + '">' + (D.k === "paused" ? "✨ Paused" : "✅ All set, you're free.") + "</p>"; }
   function render() {
     var D = window.EN || {}, root = document.getElementById("en");
     if (!root) return;
-    root.innerHTML = D.k === "still" ? still(D) : D.k === "info" ? info(D) : ask(D);
+    root.innerHTML = D.k === "still" ? still(D) : D.k === "info" ? info(D) : (D.k === "set" || D.k === "paused") ? line(D) : ask(D);
     root.querySelectorAll("a[data-p]").forEach(function (a) {
       a.addEventListener("click", function (e) { e.preventDefault(); if (window.sendPrompt) sendPrompt(a.getAttribute("data-p")); });
     });
