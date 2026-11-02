@@ -11,7 +11,7 @@ No license is granted. You may not use, copy, modify or distribute this code wit
 Post with the chat's widget tool, changing only the data in `window.TK` (one object per leg in `legs`; omit `via` for a nonstop; `theme` is `"light"` or `"auto"`):
 
 ```html
-<div id="tk"></div><script>window.TK={theme:"light",sr:"",airline:"Airline · Boarding itinerary",cabin:"Economy",passenger:"",date:"",booking:"",from:{code:"",city:""},to:{code:"",city:""},total:"",via:"",legs:[{flight:"",seat:"",dep:"",depAp:"",arr:"",arrAp:"",dur:"",op:"",plane:"",link:""}],conns:[],notes:[],foot:["",""]};</script><script src="https://cdn.jsdelivr.net/gh/caboho/widgets@v1.13.0/ticket.js"></script><script>if(!window.TKr){document.getElementById("tk").textContent=TK.legs.map(function(l){return l.flight+" "+l.dep+" → "+l.arr}).join(" · ")}</script>
+<div id="tk"></div><script>window.TK={theme:"light",sr:"",airline:"Airline · Boarding itinerary",cabin:"Economy",passenger:"",date:"",booking:"",from:{code:"",city:""},to:{code:"",city:""},total:"",via:"",legs:[{flight:"",seat:"",dep:"",depAp:"",arr:"",arrAp:"",dur:"",op:"",plane:"",link:""}],conns:[],notes:[],foot:["",""]};</script><script src="https://cdn.jsdelivr.net/gh/caboho/widgets@v1.13.1/ticket.js" onload="window.TKr&&TKr()" onerror="document.getElementById('tk').textContent=TK.legs.map(function(l){return l.flight+' '+l.dep+' '+(l.depAp||'')+' → '+l.arr+' '+(l.arrAp||'')+(l.seat?' · seat '+l.seat:'')}).join(' | ')+' · booking '+TK.booking"></script>
 ```
 
 `notes` entries are `[Tabler icon name, text]`; `link` is a FlightAware page (ICAO airline code, e.g. AEA193 for UX193).

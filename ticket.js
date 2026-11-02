@@ -9,6 +9,10 @@
     border: "var(--border)", strong: "var(--border-strong)", band: "var(--surface-1)", accBg: "var(--bg-accent)",
     acc: "var(--text-accent)", acc2: "var(--text-accent)", seatBg: "var(--bg-success)", seat: "var(--text-success)"
   };
+  function apt(t) {
+    var p = String(t == null ? "" : t).split(" · ");
+    return "<b>" + esc(p[0]) + "</b>" + (p.length > 1 ? " · " + esc(p.slice(1).join(" · ")) : "");
+  }
   function esc(t) { return String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function head() {
     if (document.getElementById("tk-fonts")) return;
@@ -42,6 +46,7 @@
       "#tk .lt{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}" +
       "#tk .tm{font-family:" + DISP + ";font-size:26px;font-weight:500;line-height:1;color:" + C.text + "}" +
       "#tk .ap{font-size:12px;color:" + C.sec + "}" +
+      "#tk .apt{margin-top:6px;font-size:13px;color:" + C.sec + "}#tk .apt b{font-family:" + DISP + ";font-size:17px;font-weight:500;letter-spacing:.02em;color:" + C.text + "}" +
       "#tk .ln{height:0;border-top:1.5px dashed " + C.strong + ";position:relative}" +
       "#tk .ln span{position:absolute;left:50%;top:-10px;transform:translateX(-50%);background:" + C.bg + ";padding:0 6px;font-size:11px;color:" + C.sec + ";font-family:" + MONO + "}" +
       "#tk .st{display:inline-block;font-family:" + MONO + ";font-size:12px;padding:3px 9px;border-radius:6px;background:" + C.seatBg + ";color:" + C.seat + ";white-space:nowrap}" +
@@ -63,8 +68,8 @@
       html += '<div class="l"><div class="lh"><span><span class="k lk">Flight ' + (i + 1) + "</span>" +
         '<span class="fn">' + esc(L.flight) + "</span>" + trk + "</span>" +
         (L.seat ? '<span class="st">Seat ' + esc(L.seat) + "</span>" : "") + "</div>" +
-        '<div class="lt"><div><div class="tm">' + esc(L.dep) + '</div><div class="ap">' + esc(L.depAp) + '</div></div><div class="ln"><span>' + esc(L.dur) +
-        '</span></div><div style="text-align:right"><div class="tm">' + esc(L.arr) + '</div><div class="ap">' + esc(L.arrAp) + "</div></div></div>" +
+        '<div class="lt"><div><div class="tm">' + esc(L.dep) + '</div><div class="apt">' + apt(L.depAp) + '</div></div><div class="ln"><span>' + esc(L.dur) +
+        '</span></div><div style="text-align:right"><div class="tm">' + esc(L.arr) + '</div><div class="apt">' + apt(L.arrAp) + "</div></div></div>" +
         (L.op || L.plane ? '<div class="ap" style="margin-top:10px">' + esc(L.op) + (L.op && L.plane ? " · " : "") + (L.plane ? '<i class="ti ti-plane-tilt" aria-hidden="true" style="font-size:13px;margin-right:4px;position:relative;top:1px"></i>' + esc(L.plane) : "") + "</div>" : "") + "</div>";
       if (conns[i]) html += '<div class="cn"><i class="ti ti-clock-hour-2" aria-hidden="true"></i>' + esc(conns[i]) + "</div>";
     });
