@@ -31,7 +31,7 @@
       "#tk .r{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px 18px 4px;gap:8px}" +
       "#tk .c{font-family:" + DISP + ";font-weight:500;font-size:44px;line-height:1;color:" + C.text + "}" +
       "#tk .s{font-size:12px;color:" + C.sec + ";margin-top:5px}" +
-      "#tk .mid{text-align:center;color:" + C.sec + ";font-size:12px}#tk .mid i{display:block;font-size:22px;margin-bottom:4px;color:" + C.acc2 + "}" +
+      "#tk .mid{text-align:center;color:" + C.sec + ";font-size:12px;line-height:1.4}#tk .mid i{display:block;font-size:22px;margin-bottom:4px;color:" + C.acc2 + "}#tk .via{font-family:" + MONO + ";font-size:11px;color:" + C.acc2 + "}" +
       "#tk .g{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;padding:16px 18px 20px}#tk .g .p{grid-column:1/-1}@media(min-width:480px){#tk .g{grid-template-columns:1.6fr 1fr 1fr}#tk .g .p{grid-column:auto}}" +
       "#tk .k{font-family:" + MONO + ";font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:" + C.muted + "}" +
       "#tk .v{font-size:15px;font-weight:500;margin-top:4px;color:" + C.text + ";overflow-wrap:anywhere}" +
@@ -54,7 +54,7 @@
     var html = '<h2 class="sr-only">' + esc(D.sr || ("Flight itinerary " + (F.code || "") + " to " + (T.code || "") + ", " + (D.date || ""))) + "</h2>" +
       '<div class="t"><div class="h"><span class="m">' + esc(D.airline || "Boarding itinerary") + '</span><span class="m">' + esc(D.cabin || "") + "</span></div>" +
       '<div class="r"><div><div class="c">' + esc(F.code) + '</div><div class="s">' + esc(F.city) + "</div></div>" +
-      '<div class="mid"><i class="ti ti-plane" aria-hidden="true"></i><div>' + esc(D.total || "") + "</div></div>" +
+      '<div class="mid"><i class="ti ti-plane" aria-hidden="true"></i><div>' + esc(D.total || "") + "</div>" + (D.via ? '<div class="via">' + esc(D.via) + "</div>" : "") + "</div>" +
       '<div style="text-align:right"><div class="c">' + esc(T.code) + '</div><div class="s">' + esc(T.city) + "</div></div></div>" +
       '<div class="g"><div class="p"><div class="k">Passenger</div><div class="v">' + esc(D.passenger) + '</div></div><div><div class="k">Date</div><div class="v">' + esc(D.date) +
       '</div></div><div><div class="k">Booking</div><div class="v" style="font-family:' + MONO + '">' + esc(D.booking) + "</div></div></div>";
