@@ -82,5 +82,5 @@
     root.innerHTML = "<style>" + css + "</style>" + html;
   }
   window.TKr = render;
-  render();
+  if (window.TK) render();
 })();
