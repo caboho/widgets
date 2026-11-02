@@ -28,16 +28,16 @@
       "#tk .t{max-width:560px;margin:.5rem auto;border:0.5px solid " + C.strong + ";border-radius:16px;background:" + C.bg + ";color:" + C.text + ";overflow:hidden;font-family:var(--font-sans),sans-serif}" +
       "#tk .h{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:14px 18px;background:" + C.accBg + ";color:" + C.acc + "}" +
       "#tk .m{font-family:" + MONO + ";font-size:11px;letter-spacing:.12em;text-transform:uppercase}" +
-      "#tk .r{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:18px 18px 6px;gap:8px}" +
+      "#tk .r{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px 18px 4px;gap:8px}" +
       "#tk .c{font-family:" + DISP + ";font-weight:500;font-size:44px;line-height:1;color:" + C.text + "}" +
-      "#tk .s{font-size:12px;color:" + C.sec + ";margin-top:2px}" +
-      "#tk .mid{text-align:center;color:" + C.sec + ";font-size:12px}#tk .mid i{font-size:22px;color:" + C.acc2 + "}" +
-      "#tk .g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:10px 18px 16px}" +
+      "#tk .s{font-size:12px;color:" + C.sec + ";margin-top:5px}" +
+      "#tk .mid{text-align:center;color:" + C.sec + ";font-size:12px}#tk .mid i{display:block;font-size:22px;margin-bottom:4px;color:" + C.acc2 + "}" +
+      "#tk .g{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;padding:16px 18px 20px}#tk .g .p{grid-column:1/-1}@media(min-width:480px){#tk .g{grid-template-columns:1.6fr 1fr 1fr}#tk .g .p{grid-column:auto}}" +
       "#tk .k{font-family:" + MONO + ";font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:" + C.muted + "}" +
-      "#tk .v{font-size:15px;font-weight:500;margin-top:2px;color:" + C.text + ";overflow-wrap:anywhere}" +
-      "#tk .l{border-top:0.5px solid " + C.border + ";padding:14px 18px}" +
-      "#tk .lh{display:flex;justify-content:space-between;gap:10px;align-items:flex-end;margin-bottom:10px}" +
-      "#tk .fn{display:inline-block;font-family:" + MONO + ";font-size:20px;font-weight:500;letter-spacing:.04em;padding:4px 12px;border-radius:8px;background:" + C.accBg + ";color:" + C.acc + ";border:1px solid " + C.acc2 + "}" +
+      "#tk .v{font-size:15px;font-weight:500;margin-top:4px;color:" + C.text + ";overflow-wrap:anywhere}" +
+      "#tk .l{border-top:0.5px solid " + C.border + ";padding:18px 18px 20px}" +
+      "#tk .lh{display:flex;justify-content:space-between;gap:10px;align-items:flex-end;margin-bottom:14px}#tk .lk{display:block;margin-bottom:6px}" +
+      "#tk .fn{display:inline-block;font-family:" + MONO + ";font-size:22px;font-weight:500;line-height:1.1;letter-spacing:.02em;color:" + C.acc2 + "}" +
       "#tk .fa{margin-left:10px;font-size:12px;color:" + C.acc2 + ";text-decoration:underline;text-underline-offset:2px;white-space:nowrap}" +
       "#tk .lt{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}" +
       "#tk .tm{font-family:" + DISP + ";font-size:26px;font-weight:500;line-height:1;color:" + C.text + "}" +
@@ -45,27 +45,27 @@
       "#tk .ln{height:0;border-top:1.5px dashed " + C.strong + ";position:relative}" +
       "#tk .ln span{position:absolute;left:50%;top:-10px;transform:translateX(-50%);background:" + C.bg + ";padding:0 6px;font-size:11px;color:" + C.sec + ";font-family:" + MONO + "}" +
       "#tk .st{display:inline-block;font-family:" + MONO + ";font-size:12px;padding:3px 9px;border-radius:6px;background:" + C.seatBg + ";color:" + C.seat + ";white-space:nowrap}" +
-      "#tk .cn{display:flex;align-items:center;gap:8px;padding:10px 18px;background:" + C.band + ";font-size:13px;color:" + C.sec + ";border-top:0.5px solid " + C.border + "}" +
+      "#tk .cn{display:flex;align-items:center;gap:10px;padding:12px 18px;background:" + C.band + ";font-size:13px;color:" + C.sec + ";border-top:0.5px solid " + C.border + "}" +
       "#tk .tr{border-top:1.5px dashed " + C.strong + ";margin:0 14px}" +
-      "#tk .n{padding:14px 18px 6px;font-size:13px;color:" + C.sec + ";line-height:1.6}#tk .n div{display:flex;gap:8px}#tk .n i{font-size:15px;margin-top:2px;color:" + C.muted + "}" +
-      "#tk .b{margin:10px 18px 16px;height:38px;background:repeating-linear-gradient(90deg," + C.text + " 0 2px,transparent 2px 4px," + C.text + " 4px 5px,transparent 5px 8px," + C.text + " 8px 11px,transparent 11px 13px);opacity:.85;border-radius:2px}" +
-      "#tk .f{display:flex;justify-content:space-between;gap:10px;padding:0 18px 14px;font-size:11px;color:" + C.muted + "}";
+      "#tk .n{padding:18px 18px 10px;font-size:13px;color:" + C.sec + ";line-height:1.5}#tk .n div{display:flex;gap:10px}#tk .n div+div{margin-top:8px}#tk .n i{font-size:15px;margin-top:2px;color:" + C.muted + "}" +
+      "#tk .b{margin:14px 18px 14px;height:38px;background:repeating-linear-gradient(90deg," + C.text + " 0 2px,transparent 2px 4px," + C.text + " 4px 5px,transparent 5px 8px," + C.text + " 8px 11px,transparent 11px 13px);opacity:.85;border-radius:2px}" +
+      "#tk .f{display:flex;justify-content:space-between;gap:10px;padding:0 18px 18px;font-size:11px;color:" + C.muted + "}";
     var F = D.from || {}, T = D.to || {}, legs = D.legs || [], conns = D.conns || [], notes = D.notes || [], foot = D.foot || [];
     var html = '<h2 class="sr-only">' + esc(D.sr || ("Flight itinerary " + (F.code || "") + " to " + (T.code || "") + ", " + (D.date || ""))) + "</h2>" +
       '<div class="t"><div class="h"><span class="m">' + esc(D.airline || "Boarding itinerary") + '</span><span class="m">' + esc(D.cabin || "") + "</span></div>" +
       '<div class="r"><div><div class="c">' + esc(F.code) + '</div><div class="s">' + esc(F.city) + "</div></div>" +
       '<div class="mid"><i class="ti ti-plane" aria-hidden="true"></i><div>' + esc(D.total || "") + "</div></div>" +
       '<div style="text-align:right"><div class="c">' + esc(T.code) + '</div><div class="s">' + esc(T.city) + "</div></div></div>" +
-      '<div class="g"><div><div class="k">Passenger</div><div class="v">' + esc(D.passenger) + '</div></div><div><div class="k">Date</div><div class="v">' + esc(D.date) +
+      '<div class="g"><div class="p"><div class="k">Passenger</div><div class="v">' + esc(D.passenger) + '</div></div><div><div class="k">Date</div><div class="v">' + esc(D.date) +
       '</div></div><div><div class="k">Booking</div><div class="v" style="font-family:' + MONO + '">' + esc(D.booking) + "</div></div></div>";
     legs.forEach(function (L, i) {
       var trk = /^https:\/\//.test(L.link || "") ? '<a class="fa" href="' + esc(L.link) + '" target="_blank" rel="noopener">Track ↗</a>' : "";
-      html += '<div class="l"><div class="lh"><span><span class="k" style="display:block;margin-bottom:4px">Flight ' + (i + 1) + "</span>" +
+      html += '<div class="l"><div class="lh"><span><span class="k lk">Flight ' + (i + 1) + "</span>" +
         '<span class="fn">' + esc(L.flight) + "</span>" + trk + "</span>" +
         (L.seat ? '<span class="st">Seat ' + esc(L.seat) + "</span>" : "") + "</div>" +
         '<div class="lt"><div><div class="tm">' + esc(L.dep) + '</div><div class="ap">' + esc(L.depAp) + '</div></div><div class="ln"><span>' + esc(L.dur) +
         '</span></div><div style="text-align:right"><div class="tm">' + esc(L.arr) + '</div><div class="ap">' + esc(L.arrAp) + "</div></div></div>" +
-        (L.op ? '<div class="ap" style="margin-top:8px">' + esc(L.op) + "</div>" : "") + "</div>";
+        (L.op || L.plane ? '<div class="ap" style="margin-top:10px">' + esc(L.op) + (L.op && L.plane ? " · " : "") + (L.plane ? '<i class="ti ti-plane-tilt" aria-hidden="true" style="font-size:13px;margin-right:4px;position:relative;top:1px"></i>' + esc(L.plane) : "") + "</div>" : "") + "</div>";
       if (conns[i]) html += '<div class="cn"><i class="ti ti-clock-hour-2" aria-hidden="true"></i>' + esc(conns[i]) + "</div>";
     });
     if (notes.length) {
