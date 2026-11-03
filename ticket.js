@@ -52,8 +52,10 @@
       "#tk .lh{display:flex;justify-content:space-between;gap:10px;align-items:flex-end;margin-bottom:14px}#tk .lk{display:block;margin-bottom:6px}" +
       "#tk .fn{display:inline-block;font-family:" + MONO + ";font-size:22px;font-weight:500;line-height:1.1;letter-spacing:.02em;color:" + C.acc2 + "}" +
       "#tk .fa{margin-left:10px;font-size:12px;color:" + C.acc2 + ";text-decoration:underline;text-underline-offset:2px;white-space:nowrap}" +
-      "#tk .lt{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}" +
-      "#tk .tm{font-family:" + DISP + ";font-size:26px;font-weight:500;line-height:1;color:" + C.text + "}" +
+      "#tk .lt{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}#tk .aps{display:flex;justify-content:space-between;gap:10px}#tk .aps .rt{text-align:right}" +
+      "#tk .tl{display:flex;gap:3px;padding:16px 18px 2px}#tk .tl .sg{min-width:48px}#tk .tl .bar{height:6px;border-radius:3px;background:" + C.acc2 + "}#tk .tl .cx .bar{background:repeating-linear-gradient(90deg," + C.strong + " 0 4px,transparent 4px 7px)}" +
+      "#tk .tl .lb{margin-top:6px;font-family:" + MONO + ";font-size:10px;line-height:1.35;color:" + C.muted + ";white-space:nowrap}#tk .tl .lb b{display:block;font-weight:500;color:" + C.acc2 + "}#tk .tl .cx .lb b{color:" + C.sec + "}" +
+      "#tk .tm{font-family:" + DISP + ";font-size:26px;font-weight:500;line-height:1;font-variant-numeric:tabular-nums;color:" + C.text + "}" +
       "#tk .ap{font-size:12px;color:" + C.sec + "}" +
       "#tk .apt{margin-top:6px;font-size:13px;color:" + C.sec + "}#tk .apt b{font-family:" + DISP + ";font-size:17px;font-weight:500;letter-spacing:.02em;color:" + C.text + "}" +
       "#tk .ln{height:0;border-top:1.5px dashed " + C.strong + ";position:relative}" +
@@ -65,14 +67,25 @@
       "#tk .fb{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:14px 18px 18px}#tk .fb .ft{text-align:right;font-size:11px;color:" + C.muted + ";line-height:1.5}" +
       "#tk .b{display:block;width:150px;height:30px;flex:none;background:repeating-linear-gradient(90deg," + C.text + " 0 2px,transparent 2px 4px," + C.text + " 4px 5px,transparent 5px 8px," + C.text + " 8px 11px,transparent 11px 13px);opacity:.85;border-radius:2px}#tk a.b:hover{opacity:1}" +
       "";
-    var FM = D.flags || "summary", FS = FM === "summary" || FM === "both", FL = FM === "legs" || FM === "both";
+    var FM = D.flags || "legs", FS = FM === "summary" || FM === "both", FL = FM === "legs" || FM === "both";
     var F = D.from || {}, T = D.to || {}, legs = D.legs || [], conns = D.conns || [], notes = D.notes || [], foot = D.foot || [];
+    function mins(t) { var m = /(\d+)\s*h\s*(\d+)?/.exec(t || ""); return m ? (+m[1]) * 60 + (+(m[2] || 0)) : 0; }
+    var segs = [], ok = legs.length > 1;
+    legs.forEach(function (L, i) {
+      segs.push({ c: "", b: L.flight, d: L.dur, m: mins(L.dur) });
+      var cd = conns[i] && /(\d+h\d*)/.exec(conns[i]);
+      if (i < legs.length - 1) segs.push({ c: "cx", b: String(L.arrAp || "").split(" · ")[0], d: cd ? cd[1] : "", m: cd ? mins(cd[1]) : 0 });
+    });
+    segs.forEach(function (g) { if (!g.m) ok = false; });
+    var tl = ok ? '<div class="tl" aria-hidden="true">' + segs.map(function (g) {
+      return '<div class="sg ' + g.c + '" style="flex:' + g.m + ' 1 0"><div class="bar"></div><div class="lb"><b>' + esc(g.b) + "</b>" + esc(g.d) + "</div></div>";
+    }).join("") + "</div>" : "";
     var html = '<h2 class="sr-only">' + esc(D.sr || ("Flight itinerary " + (F.code || "") + " to " + (T.code || "") + ", " + (D.date || ""))) + "</h2>" +
       '<div class="t"><div class="h"><span class="m">' + esc(D.airline || "Boarding itinerary") + '</span><span class="m">' + esc(D.cabin || "") + "</span></div>" +
       '<div class="sum"><div class="r"><div><div class="c">' + esc(F.code) + (FS ? flag(F.cc) : "") + '</div><div class="s">' + esc(F.city) + "</div></div>" +
       '<div class="mid"><i class="ti ti-plane" aria-hidden="true"></i><div>' + esc(D.total || "") + "</div>" + (D.via ? '<div class="via">' + esc(D.via) + "</div>" : "") + "</div>" +
       '<div class="rt" style="text-align:right"><div class="c">' + (FS ? flag(T.cc) : "") + esc(T.code) + '</div><div class="s">' + esc(T.city) + "</div></div></div>" +
-      '<div class="g"><div class="p"><div class="k">Passenger</div><div class="v">' + esc(D.passenger) + '</div></div><div><div class="k">Date</div><div class="v">' + esc(D.date) +
+      tl + '<div class="g"><div class="p"><div class="k">Passenger</div><div class="v">' + esc(D.passenger) + '</div></div><div><div class="k">Date</div><div class="v">' + esc(D.date) +
       '</div></div><div><div class="k">Booking</div><div class="v" style="font-family:' + MONO + '">' + esc(D.booking) + "</div></div></div></div>" +
       '<div class="sec"><i class="ti ti-route" aria-hidden="true"></i><span>' + (legs.length === 1 ? "1 flight" : legs.length + " flights") + " in this trip</span></div><div class=\"legs\">";
     legs.forEach(function (L, i) {
@@ -80,8 +93,8 @@
       html += '<div class="lg"><div class="l"><div class="lh"><span><span class="k lk">Flight ' + (i + 1) + "</span>" +
         '<span class="fn">' + esc(L.flight) + "</span>" + trk + "</span>" +
         (L.seat ? '<span class="st">Seat ' + esc(L.seat) + "</span>" : "") + "</div>" +
-        '<div class="lt"><div><div class="tm">' + esc(L.dep) + '</div><div class="apt">' + apt(L.depAp, FL && L.depCc) + '</div></div><div class="ln"><span>' + esc(L.dur) +
-        '</span></div><div style="text-align:right"><div class="tm">' + esc(L.arr) + '</div><div class="apt rt">' + apt(L.arrAp, FL && L.arrCc, true) + "</div></div></div>" +
+        '<div class="lt"><div class="tm">' + esc(L.dep) + '</div><div class="ln"><span>' + esc(L.dur) + '</span></div><div class="tm">' + esc(L.arr) + "</div></div>" +
+        '<div class="aps"><div class="apt">' + apt(L.depAp, FL && L.depCc) + '</div><div class="apt rt">' + apt(L.arrAp, FL && L.arrCc) + "</div></div>" +
         (L.op || L.plane ? '<div class="ap" style="margin-top:10px">' + esc(L.op) + (L.op && L.plane ? " · " : "") + (L.plane ? '<i class="ti ti-plane-tilt" aria-hidden="true" style="font-size:13px;margin-right:4px;position:relative;top:1px"></i>' + esc(L.plane) : "") + "</div>" : "") + "</div></div>";
       if (conns[i]) html += '<div class="cn"><i class="ti ti-clock-hour-2" aria-hidden="true"></i>' + esc(conns[i]) + "</div>";
     });
