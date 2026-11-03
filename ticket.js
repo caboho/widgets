@@ -38,7 +38,7 @@
       "#tk .m{font-family:" + MONO + ";font-size:11px;letter-spacing:.12em;text-transform:uppercase}" +
       "#tk .sum{background:" + C.top + ";border-bottom:0.5px solid " + C.strong + "}" +
       "#tk .sec{display:flex;align-items:center;gap:8px;padding:16px 18px 0}#tk .sec span{font-family:" + MONO + ";font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:" + C.muted + "}#tk .sec i{font-size:14px;color:" + C.muted + "}" +
-      "#tk .legs{padding:8px 0 0}#tk .lg{margin:0 18px;border-left:3px solid " + C.acc2 + ";background:" + C.top + "}" +
+      "#tk .legs{padding:18px 0 0}#tk .lg{margin:0 18px;border-left:3px solid " + C.acc2 + ";background:" + C.top + "}" +
       "#tk .r{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px 18px 4px;gap:8px}" +
       "#tk .c{font-family:" + DISP + ";font-weight:500;font-size:44px;line-height:1;color:" + C.text + "}" +
       "#tk .s{font-size:12px;color:" + C.sec + ";margin-top:5px}" +
@@ -87,10 +87,10 @@
       '<div class="rt" style="text-align:right"><div class="c">' + (FS ? flag(T.cc) : "") + esc(T.code) + '</div><div class="s">' + esc(T.city) + "</div></div></div>" +
       tl + '<div class="g"><div class="p"><div class="k">Passenger</div><div class="v">' + esc(D.passenger) + '</div></div><div><div class="k">Date</div><div class="v">' + esc(D.date) +
       '</div></div><div><div class="k">Booking</div><div class="v" style="font-family:' + MONO + '">' + esc(D.booking) + "</div></div></div></div>" +
-      '<div class="sec"><i class="ti ti-route" aria-hidden="true"></i><span>' + (legs.length === 1 ? "1 flight" : legs.length + " flights") + " in this trip</span></div><div class=\"legs\">";
+      '<div class="legs">';
     legs.forEach(function (L, i) {
       var trk = /^https:\/\//.test(L.link || "") ? '<a class="fa" href="' + esc(L.link) + '" target="_blank" rel="noopener">Track ↗</a>' : "";
-      html += '<div class="lg"><div class="l"><div class="lh"><span><span class="k lk">Flight ' + (i + 1) + "</span>" +
+      html += '<div class="lg"><div class="l"><div class="lh"><span><span class="k lk">Flight' + (legs.length > 1 ? " " + (i + 1) + " of " + legs.length : "") + "</span>" +
         '<span class="fn">' + esc(L.flight) + "</span>" + trk + "</span>" +
         (L.seat ? '<span class="st">Seat ' + esc(L.seat) + "</span>" : "") + "</div>" +
         '<div class="lt"><div class="tm">' + esc(L.dep) + '</div><div class="ln"><span class="du">' + esc(L.dur) + '</span><div class="rl"></div>' + (L.plane ? '<span class="pl"><i class="ti ti-plane-tilt" aria-hidden="true"></i>' + esc(L.plane) + "</span>" : "") + '</div><div class="tm">' + esc(L.arr) + "</div></div>" +
