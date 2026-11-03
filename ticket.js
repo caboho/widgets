@@ -9,9 +9,11 @@
     border: "var(--border)", strong: "var(--border-strong)", band: "var(--surface-1)", top: "var(--surface-1)", bar: "var(--border-strong)", accBg: "var(--bg-accent)",
     acc: "var(--text-accent)", acc2: "var(--text-accent)", seatBg: "var(--bg-success)", seat: "var(--text-success)"
   };
-  function apt(t) {
-    var p = String(t == null ? "" : t).split(" · ");
-    return "<b>" + esc(p[0]) + "</b>" + (p.length > 1 ? " · " + esc(p.slice(1).join(" · ")) : "");
+  function flag(cc) { return /^[a-z]{2}$/i.test(cc || "") ? '<span class="fi fi-' + cc.toLowerCase() + ' tkf" aria-hidden="true"></span>' : ""; }
+  function apt(t, cc, right) {
+    var p = String(t == null ? "" : t).split(" · "), f = flag(cc);
+    var code = f + "<b>" + esc(p[0]) + "</b>";
+    return code + (p.length > 1 ? " · " + esc(p.slice(1).join(" · ")) : "");
   }
   function esc(t) { return String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function head() {
@@ -20,7 +22,9 @@
     a.href = "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500&family=JetBrains+Mono:wght@500&display=swap";
     var b = document.createElement("link"); b.rel = "stylesheet";
     b.href = "https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css";
-    document.head.appendChild(a); document.head.appendChild(b);
+    var c = document.createElement("link"); c.rel = "stylesheet";
+    c.href = "https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css";
+    document.head.appendChild(a); document.head.appendChild(b); document.head.appendChild(c);
   }
   function render() {
     var D = window.TK || {}, root = document.getElementById("tk");
@@ -38,6 +42,8 @@
       "#tk .r{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px 18px 4px;gap:8px}" +
       "#tk .c{font-family:" + DISP + ";font-weight:500;font-size:44px;line-height:1;color:" + C.text + "}" +
       "#tk .s{font-size:12px;color:" + C.sec + ";margin-top:5px}" +
+      "#tk .tkf{display:inline-block;width:20px;height:15px;border-radius:2px;background-size:cover;background-position:center;box-shadow:0 0 0 0.5px " + C.strong + ";vertical-align:-2px}" +
+      "#tk .c{white-space:nowrap}#tk .c .tkf{width:20px;height:15px;margin:0 0 0 6px;vertical-align:8px}#tk .rt .c .tkf{margin:0 6px 0 0}#tk .apt .tkf{width:16px;height:12px;margin:0 5px 0 0;vertical-align:0}" +
       "#tk .mid{text-align:center;color:" + C.sec + ";font-size:12px;line-height:1.4}#tk .mid i{display:block;font-size:22px;margin-bottom:4px;color:" + C.acc2 + "}#tk .via{font-family:" + MONO + ";font-size:11px;color:" + C.acc2 + "}" +
       "#tk .g{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;padding:16px 18px 20px}#tk .g .p{grid-column:1/-1}@media(min-width:480px){#tk .g{grid-template-columns:1.6fr 1fr 1fr}#tk .g .p{grid-column:auto}}" +
       "#tk .k{font-family:" + MONO + ";font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:" + C.muted + "}" +
@@ -59,12 +65,13 @@
       "#tk .fb{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:14px 18px 18px}#tk .fb .ft{text-align:right;font-size:11px;color:" + C.muted + ";line-height:1.5}" +
       "#tk .b{display:block;width:150px;height:30px;flex:none;background:repeating-linear-gradient(90deg," + C.text + " 0 2px,transparent 2px 4px," + C.text + " 4px 5px,transparent 5px 8px," + C.text + " 8px 11px,transparent 11px 13px);opacity:.85;border-radius:2px}#tk a.b:hover{opacity:1}" +
       "";
+    var FM = D.flags || "summary", FS = FM === "summary" || FM === "both", FL = FM === "legs" || FM === "both";
     var F = D.from || {}, T = D.to || {}, legs = D.legs || [], conns = D.conns || [], notes = D.notes || [], foot = D.foot || [];
     var html = '<h2 class="sr-only">' + esc(D.sr || ("Flight itinerary " + (F.code || "") + " to " + (T.code || "") + ", " + (D.date || ""))) + "</h2>" +
       '<div class="t"><div class="h"><span class="m">' + esc(D.airline || "Boarding itinerary") + '</span><span class="m">' + esc(D.cabin || "") + "</span></div>" +
-      '<div class="sum"><div class="r"><div><div class="c">' + esc(F.code) + '</div><div class="s">' + esc(F.city) + "</div></div>" +
+      '<div class="sum"><div class="r"><div><div class="c">' + esc(F.code) + (FS ? flag(F.cc) : "") + '</div><div class="s">' + esc(F.city) + "</div></div>" +
       '<div class="mid"><i class="ti ti-plane" aria-hidden="true"></i><div>' + esc(D.total || "") + "</div>" + (D.via ? '<div class="via">' + esc(D.via) + "</div>" : "") + "</div>" +
-      '<div style="text-align:right"><div class="c">' + esc(T.code) + '</div><div class="s">' + esc(T.city) + "</div></div></div>" +
+      '<div class="rt" style="text-align:right"><div class="c">' + (FS ? flag(T.cc) : "") + esc(T.code) + '</div><div class="s">' + esc(T.city) + "</div></div></div>" +
       '<div class="g"><div class="p"><div class="k">Passenger</div><div class="v">' + esc(D.passenger) + '</div></div><div><div class="k">Date</div><div class="v">' + esc(D.date) +
       '</div></div><div><div class="k">Booking</div><div class="v" style="font-family:' + MONO + '">' + esc(D.booking) + "</div></div></div></div>" +
       '<div class="sec"><i class="ti ti-route" aria-hidden="true"></i><span>' + (legs.length === 1 ? "1 flight" : legs.length + " flights") + " in this trip</span></div><div class=\"legs\">";
@@ -73,8 +80,8 @@
       html += '<div class="lg"><div class="l"><div class="lh"><span><span class="k lk">Flight ' + (i + 1) + "</span>" +
         '<span class="fn">' + esc(L.flight) + "</span>" + trk + "</span>" +
         (L.seat ? '<span class="st">Seat ' + esc(L.seat) + "</span>" : "") + "</div>" +
-        '<div class="lt"><div><div class="tm">' + esc(L.dep) + '</div><div class="apt">' + apt(L.depAp) + '</div></div><div class="ln"><span>' + esc(L.dur) +
-        '</span></div><div style="text-align:right"><div class="tm">' + esc(L.arr) + '</div><div class="apt">' + apt(L.arrAp) + "</div></div></div>" +
+        '<div class="lt"><div><div class="tm">' + esc(L.dep) + '</div><div class="apt">' + apt(L.depAp, FL && L.depCc) + '</div></div><div class="ln"><span>' + esc(L.dur) +
+        '</span></div><div style="text-align:right"><div class="tm">' + esc(L.arr) + '</div><div class="apt rt">' + apt(L.arrAp, FL && L.arrCc, true) + "</div></div></div>" +
         (L.op || L.plane ? '<div class="ap" style="margin-top:10px">' + esc(L.op) + (L.op && L.plane ? " · " : "") + (L.plane ? '<i class="ti ti-plane-tilt" aria-hidden="true" style="font-size:13px;margin-right:4px;position:relative;top:1px"></i>' + esc(L.plane) : "") + "</div>" : "") + "</div></div>";
       if (conns[i]) html += '<div class="cn"><i class="ti ti-clock-hour-2" aria-hidden="true"></i>' + esc(conns[i]) + "</div>";
     });
