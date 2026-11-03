@@ -58,8 +58,8 @@
       "#tk .tm{font-family:" + DISP + ";font-size:26px;font-weight:500;line-height:1;font-variant-numeric:tabular-nums;color:" + C.text + "}" +
       "#tk .ap{font-size:12px;color:" + C.sec + "}" +
       "#tk .apt{margin-top:6px;font-size:13px;color:" + C.sec + "}#tk .apt b{font-family:" + DISP + ";font-size:17px;font-weight:500;letter-spacing:.02em;color:" + C.text + "}" +
-      "#tk .ln{height:0;border-top:1.5px dashed " + C.strong + ";position:relative}" +
-      "#tk .ln span{position:absolute;left:50%;top:-10px;transform:translateX(-50%);background:" + C.top + ";padding:0 6px;font-size:11px;color:" + C.sec + ";font-family:" + MONO + "}" +
+      "#tk .ln{min-width:0;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center}#tk .ln .rl{align-self:stretch;height:0;border-top:1.5px dashed " + C.strong + "}" +
+      "#tk .ln .du{font-size:11px;line-height:1.2;color:" + C.sec + ";font-family:" + MONO + "}#tk .ln .pl{font-size:11px;line-height:1.25;color:" + C.muted + "}#tk .ln .pl i{font-size:12px;margin-right:3px;position:relative;top:1px}" +
       "#tk .st{display:inline-block;font-family:" + MONO + ";font-size:12px;padding:3px 9px;border-radius:6px;background:" + C.seatBg + ";color:" + C.seat + ";white-space:nowrap}" +
       "#tk .cn{display:flex;align-items:center;gap:8px;margin:0 18px;padding:10px 14px;font-size:12px;line-height:1.4;color:" + C.muted + ";border-left:3px dashed " + C.strong + "}#tk .cn i{font-size:14px}" +
       "#tk .tr{border-top:1.5px dashed " + C.strong + ";margin:18px 14px 0}" +
@@ -93,9 +93,9 @@
       html += '<div class="lg"><div class="l"><div class="lh"><span><span class="k lk">Flight ' + (i + 1) + "</span>" +
         '<span class="fn">' + esc(L.flight) + "</span>" + trk + "</span>" +
         (L.seat ? '<span class="st">Seat ' + esc(L.seat) + "</span>" : "") + "</div>" +
-        '<div class="lt"><div class="tm">' + esc(L.dep) + '</div><div class="ln"><span>' + esc(L.dur) + '</span></div><div class="tm">' + esc(L.arr) + "</div></div>" +
+        '<div class="lt"><div class="tm">' + esc(L.dep) + '</div><div class="ln"><span class="du">' + esc(L.dur) + '</span><div class="rl"></div>' + (L.plane ? '<span class="pl"><i class="ti ti-plane-tilt" aria-hidden="true"></i>' + esc(L.plane) + "</span>" : "") + '</div><div class="tm">' + esc(L.arr) + "</div></div>" +
         '<div class="aps"><div class="apt">' + apt(L.depAp, FL && L.depCc) + '</div><div class="apt rt">' + apt(L.arrAp, FL && L.arrCc) + "</div></div>" +
-        (L.op || L.plane ? '<div class="ap" style="margin-top:10px">' + esc(L.op) + (L.op && L.plane ? " · " : "") + (L.plane ? '<i class="ti ti-plane-tilt" aria-hidden="true" style="font-size:13px;margin-right:4px;position:relative;top:1px"></i>' + esc(L.plane) : "") + "</div>" : "") + "</div></div>";
+        (L.op ? '<div class="ap" style="margin-top:10px">' + esc(L.op) + "</div>" : "") + "</div></div>";
       if (conns[i]) html += '<div class="cn"><i class="ti ti-clock-hour-2" aria-hidden="true"></i>' + esc(conns[i]) + "</div>";
     });
     html += "</div>";
