@@ -5,7 +5,6 @@
 .ey [data-sky]:empty{display:none}
 .hd{font-family:"Bricolage Grotesque",var(--font-sans);font-size:28px;line-height:1.05;font-weight:500;margin:6px 0 8px}
 .wh{font-size:13px;color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:4px 14px}
-.sn{font-size:13px;color:var(--text-secondary);line-height:1.5;margin-top:8px;padding-top:8px;border-top:0.5px solid var(--border)} .sn span{font-family:"JetBrains Mono",var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-right:8px}
 .lb{font-family:"JetBrains Mono",var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);margin:0 0 8px}
 .tl{display:grid;grid-template-columns:20px minmax(0,1fr);align-items:baseline;font-size:14px;line-height:1.5;padding:1px 0}
 .tm{font-family:"JetBrains Mono",var(--font-mono);font-size:13px;color:var(--text-secondary);margin-right:6px}
@@ -32,3 +31,6 @@
 .lr,.lr .dt,.lr .dt b,.lr .ro{color:var(--text-secondary)}
 .ar{font-family:"JetBrains Mono",var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin:10px 0 2px}
 .fs{border:0.5px solid var(--text-accent);border-radius:12px;padding:12px 14px;background:var(--surface-2)}
+/* Change marks (since 2026-11-08): NEW tag on lines changed since the last card; Off the card line */
+.nw{font-family:"JetBrains Mono",var(--font-mono);font-size:10px;padding:1px 6px;border-radius:5px;border:0.5px solid var(--text-accent);color:var(--text-accent);margin-left:6px;white-space:nowrap;letter-spacing:.06em}
+.off{font-size:13px;color:var(--text-muted);line-height:1.5} .off b{font-family:"JetBrains Mono",var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-right:8px}
