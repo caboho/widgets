@@ -11,7 +11,7 @@ No license is granted. You may not use, copy, modify or distribute this code wit
 `day-card.css` holds the cards' styles: base, layout, the NEW / MOVED / MOST IMPORTANT tags, the outlined lists and the stakes line (`.dk`). The part-of-day sky icon is a static inline SVG written into each card (no script), so it shows at once and offline.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/caboho/widgets@v1.16.0/day-card.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/caboho/widgets@v1.17.0/day-card.css">
 <div class="od"><div><div class="ey"><svg …></svg>Close the day · Sun Nov 8, 2026 · 📍 Bogotá</div>…</div>…</div>
 ```
 

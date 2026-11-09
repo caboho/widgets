@@ -1,7 +1,7 @@
 /* Day card styles (open, update and close cards). Copyright (c) 2026 caboho. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
 /* Base */
 .od{padding:.5rem 3px .25rem 0;display:flex;flex-direction:column;gap:18px}
-.ey{font-family:"JetBrains Mono",var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);display:flex;align-items:center;gap:8px}
+.ey{font-family:"JetBrains Mono",var(--font-mono);font-size:11px;letter-spacing:0;text-transform:uppercase;color:var(--text-secondary);display:flex;align-items:center;gap:8px}
 .hd{font-family:"Bricolage Grotesque",var(--font-sans);font-size:28px;line-height:1.05;font-weight:500;margin:6px 0 8px}
 .wh{font-size:13px;color:var(--text-secondary);display:flex;flex-wrap:wrap;gap:4px 14px}
 .lb{font-family:"JetBrains Mono",var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);margin:0 0 8px}
