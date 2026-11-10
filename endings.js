@@ -10,13 +10,18 @@
     return "margin:0;font-family:" + v("font", "inherit") + ";font-size:" + v("size", "14px") + ";line-height:var(--en-line,1.6);font-weight:" + v("weight", "400") + ";color:" + v("color", "var(--text-primary)");
   }
   var A = "color:var(--en-link,var(--text-accent));font-weight:400;text-decoration:underline;text-underline-offset:3px;cursor:pointer";
+  var CH = "display:inline-block;min-width:1.5em;box-sizing:border-box;padding:0 5px;margin-right:6px;border:0.5px solid var(--en-chip-edge,var(--border-accent));border-radius:6px;background:var(--en-chip-bg,var(--bg-accent));color:var(--en-chip-color,var(--text-accent));font-family:var(--font-mono,monospace);font-size:.9em;line-height:1.45;text-align:center;text-decoration:none";
   var HR = '<hr style="border:none;border-top:1px solid var(--border-strong);margin:0 0 1rem">';
   function esc(t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   // A link whose target is a web address opens that page (e.g. the thing to check before "Ready to use");
   // any other target is a reply sent to the chat.
   function link(l) {
     if (/^https?:\/\//.test(l[1])) return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener" style="' + A + '">' + esc(l[0]) + " ↗</a>";
-    return '<a href="#" data-p="' + esc(l[1]) + '" style="' + A + '">' + esc(l[0]) + "</a>";
+    // A reply link whose label opens with a letter ("a · Save") shows the letter as a blue chip (since v1.19.0),
+    // so he can see which letter to type; labels without a letter draw as before.
+    var m = /^([a-z]) · ([\s\S]+)$/.exec(l[0]);
+    var lab = m ? '<span style="' + CH + '">' + m[1] + "</span>" + esc(m[2]) : esc(l[0]);
+    return '<a href="#" data-p="' + esc(l[1]) + '" style="' + A + '">' + lab + "</a>";
   }
   function done(d) { return d ? '<p style="' + S("done") + ';margin:0 0 var(--en-gap-done,8px)">☑️ Done</p>' : ""; }
   function ask(D) {
