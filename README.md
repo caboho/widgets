@@ -2,6 +2,10 @@
 
 Display scripts for my chat widgets: Sources list, change-control view, on-your-return list, not-checked list, status list (no change plus not checked), copy box, what's-waiting checklist, flight ticket, and the day cards' styles. Each is loaded from a tagged release.
 
+## Releasing a version
+
+A chat session pushes the commit to main. I publish the release myself, which creates the tag. Sessions can't create tags or releases, and never publish one under my account.
+
 Copyright (c) 2026 caboho. All rights reserved.
 
 No license is granted. You may not use, copy, modify or distribute this code without written permission.
