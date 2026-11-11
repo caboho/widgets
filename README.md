@@ -4,7 +4,7 @@ Display scripts for my chat widgets: Sources list, change-control view, on-your-
 
 ## Releasing a version
 
-A chat session pushes the commit to main. I publish the release myself, which creates the tag. Sessions can't create tags or releases, and never publish one under my account.
+A chat session pushes the commit to main. I publish the release myself, which creates the tag. Sessions can't create tags or releases, and never publish one under my account unless I authorize that exact release myself.
 
 Copyright (c) 2026 caboho. All rights reserved.
 
