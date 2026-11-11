@@ -17,9 +17,9 @@
   // any other target is a reply sent to the chat.
   function link(l) {
     if (/^https?:\/\//.test(l[1])) return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener" style="' + A + '">' + esc(l[0]) + " ↗</a>";
-    // A reply link whose label opens with a letter ("a · Save") shows the letter as a blue chip (since v1.19.0),
-    // so he can see which letter to type; labels without a letter draw as before.
-    var m = /^([a-z]) · ([\s\S]+)$/.exec(l[0]);
+    // A reply link whose label opens with a letter ("a · Save") or a row number ("5 · Token file", since v1.20.0)
+    // shows it as a blue chip (since v1.19.0), so he can see what to type; other labels draw as before.
+    var m = /^([a-z]|\d{1,2}) · ([\s\S]+)$/.exec(l[0]);
     var lab = m ? '<span style="' + CH + '">' + m[1] + "</span>" + esc(m[2]) : esc(l[0]);
     return '<a href="#" data-p="' + esc(l[1]) + '" style="' + A + '">' + lab + "</a>";
   }
