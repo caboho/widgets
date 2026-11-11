@@ -21,7 +21,10 @@
     // shows it as a blue chip (since v1.19.0), so he can see what to type; other labels draw as before.
     var m = /^([a-z]|\d{1,2}) · ([\s\S]+)$/.exec(l[0]);
     var lab = m ? '<span style="' + CH + '">' + m[1] + "</span>" + esc(m[2]) : esc(l[0]);
-    return '<a href="#" data-p="' + esc(l[1]) + '" style="' + A + '">' + lab + "</a>";
+    // The reply a tap sends opens with the same letter or number the link shows ("a · Save · tag", since v1.21.0),
+    // added here when the snippet's reply text lacks it.
+    var p = m && l[1].indexOf(m[1] + " · ") !== 0 ? m[1] + " · " + l[1] : l[1];
+    return '<a href="#" data-p="' + esc(p) + '" style="' + A + '">' + lab + "</a>";
   }
   function done(d) { return d ? '<p style="' + S("done") + ';margin:0 0 var(--en-gap-done,8px)">☑️ Done</p>' : ""; }
   function ask(D) {
