@@ -43,3 +43,8 @@
 .gut{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;padding:0 14px} .ovb.gut{padding:10px 14px}
 .gi{font-size:22px;line-height:1;color:var(--text-muted);padding-top:2px} .ovb .gi{color:var(--text-danger)}
 .sp{margin-top:10px} .tt{margin-top:-12px}
+/* Overdue split (since 2026-11-11): rows that matter stay as they are; a dashed line (q1 on the first row below it), then the rest muted (qt on each row) */
+.ovb .row.q1{border-top:1px dashed var(--text-danger)}
+.ovb .row.qt,.ovb .row.qt .dt,.ovb .row.qt .dt b,.ovb .row.qt .ro,.ovb .row.qt .lt,.ovb .row.qt .pm{color:var(--text-muted)}
+.ovb .row.qt{font-size:13px}
+.ovb .row.qt .lt{opacity:1}
