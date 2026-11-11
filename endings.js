@@ -37,9 +37,14 @@
     return HR + ps + n;
   }
   function still(D) {
-    var g = (D.g || []).length ? " · " + D.g.map(link).join(" · ") : "";
+    // Since v1.22.0: links that open a page stay with the step; links that send a reply (Do it, Guide me)
+    // come after "then click Done", as in the plain-text form.
+    function web(l) { return /^https?:\/\//.test(l[1]); }
+    var all = D.g || [], pg = all.filter(web), rp = all.filter(function (l) { return !web(l); });
+    var g = pg.length ? " · " + pg.map(link).join(" · ") : "";
+    var h = rp.length ? " · " + rp.map(link).join(" · ") : "";
     var c = (D.c || []).map(function (t) { return '<div data-copy style="margin-top:10px">' + esc(t) + "</div>"; }).join("");
-    return HR + done(D.d) + '<p style="' + S("still") + '">' + "🔲 Still on you: " + esc(D.s) + g + " — then click " + link(["Done", D.t]) + "</p>" + c;
+    return HR + done(D.d) + '<p style="' + S("still") + '">' + "🔲 Still on you: " + esc(D.s) + g + " — then click " + link(["Done", D.t]) + h + "</p>" + c;
   }
   function info(D) {
     var rows = (D.r || []).map(function (r) {
